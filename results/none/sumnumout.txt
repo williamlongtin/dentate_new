@@ -1,0 +1,7 @@
+NumCells = 517;
+NumSpikes = 1681;
+NumConnections = 20666;
+RunTime = 17.91;
+NumCellTypes = 5;
+LoadBalResult = 1;
+ExchangeResult = 0.0048511;

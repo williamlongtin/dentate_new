@@ -1,0 +1,6 @@
+celltype	techtype	typeIndex	rangeStart	rangeEnd
+ppstim	ppstim	0	0	0
+granulecell	granulecell	1	1	500
+mossycell	mossycell	2	501	508
+basketcell	basketcell	3	509	513
+hippcell	hippcell	4	514	516
