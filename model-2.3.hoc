@@ -178,6 +178,13 @@ if (PrintCellPositions>0) {posout()}	// Calls the proc that writes the position 
 createtime = startsw() - createstart	// Calculate time taken to create the cells
 if (pc.id == 0) {printf("\nTIME HOST 0: %g seconds (created cells)\n************\n", createtime)}
 connectstart = startsw()				// Grab start time of cell connection
+
+objref ic
+cellType[3].CellList[int(cellType[3].numCells/2)].soma ic = new IClamp(0.5)
+ic.del = 10
+ic.dur = 4000
+ic.amp = .05
+
 /***********************************************************************************************
 V.	CONNECT THE CELLS AND CONNECT THE PERFORANT PATH TO SOME CELLS
 ***********************************************************************************************/
