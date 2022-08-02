@@ -12,8 +12,12 @@ h('strdef RunName')
 h('PercentCellDeath = 0') # % of vulnerable interneurons to remove
 h('PercentAxonSprouting = 0') # % of extra connectivity allowed
 h('SimDuration = 100') # duration of simulation in milliseconds
-h('Scale = 2000') # How many real cells are represented by one
+h('Scale = 20000') # How many real cells are represented by one
                  # model cell (so larger numbers mean smaller models)
+                 # 20000 - good for making sure code can run, may take
+                 # 2 - 8 min
+                 # 2000 or 1000 - better for more realistic results
+                 # but may take a long time depending on your computer
 #%%
 h.RunName = "Test"
 h.PercentCellDeath = 50

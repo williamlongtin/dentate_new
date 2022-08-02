@@ -103,7 +103,7 @@ INITIAL {
 	hyhtf = hyhtfinf
 	hyhts = hyhtsinf
 	VERBATIM
-	return 0;
+	return;
 	ENDVERBATIM
 }
 
