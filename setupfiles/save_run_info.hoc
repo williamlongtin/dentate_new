@@ -252,6 +252,8 @@ proc typeout() {local i, myline, rn, rank, gid, srcid localobj tgt, f, cell, f2c
 
 	// Also generate a results file that contains a table of all the cell types in the model.
 	sprint(cmd,"../results/%s/celltype.dat", RunName)
+	print "saving data: "
+	print cmd
 	f = new File(cmd)
 	if (pc.id == 0) { 				// Write header to file 1 time only
 		f.wopen()
