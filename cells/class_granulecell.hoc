@@ -4,6 +4,7 @@ begintemplate granulecell
 //ndendN where N = # of dendrites
 ndend1=4 //# segments for each dendrite
 ndend2=4
+gabapentin = 1
 //define variables
 public  pre_list, connect_pre, subsets, is_art, is_connected
 public soma, gcdend1, gcdend2
@@ -68,13 +69,13 @@ proc gctemp() {
 	gkfbar_ichan2=0.016  //original 0.015
 	gksbar_ichan2=0.006
 		insert borgka
-	gkabar_borgka=0.012
+	gkabar_borgka=0.012*(1-gabapentin)
 		insert nca  // HAV-N- Ca channel
-	gncabar_nca=0.002  // check to modify- original 0.004
+	gncabar_nca=0.002*(1-gabapentin)  // check to modify- original 0.004
 		insert lca 
-	glcabar_lca=0.005
+	glcabar_lca=0.005*(1-gabapentin)
 		insert cat
-	gcatbar_cat=0.000037
+	gcatbar_cat=0.000037*(1-gabapentin)
 		insert gskch
 	gskbar_gskch=0.001
 		insert cagk
@@ -89,9 +90,9 @@ proc gctemp() {
 	gkfbar_ichan2=0.004
 	gksbar_ichan2=0.006
 		insert nca  // HAV-N- Ca channel
-	gncabar_nca=0.003  // check to modify- original 0.004
+	gncabar_nca=0.003*(1-gabapentin)  // check to modify- original 0.004
 		insert lca 
-	glcabar_lca=0.0075
+	glcabar_lca=0.0075*(1-gabapentin)
 		insert cat
 	gcatbar_cat=0.000075
 		insert gskch
@@ -106,9 +107,9 @@ proc gctemp() {
 	gkfbar_ichan2=0.004
 	gksbar_ichan2=0.006
 		insert nca  // HAV-N- Ca channel
-	gncabar_nca=0.001  // check to modify- original 0.004
+	gncabar_nca=0.001*(1-gabapentin)  // check to modify- original 0.004
 		insert lca 
-	glcabar_lca=0.0075
+	glcabar_lca=0.0075*(1-gabapentin)
 		insert cat
 	gcatbar_cat=0.00025
 		insert gskch
@@ -125,9 +126,9 @@ proc gctemp() {
 			gkfbar_ichan2=0.001
 			gksbar_ichan2=0.006
 		insert nca  // HAV-N- Ca channel
-			gncabar_nca=0.001  // check to modify- original 0.004
+			gncabar_nca=0.001*(1-gabapentin)  // check to modify- original 0.004
 		insert lca 
-			glcabar_lca=0.0005
+			glcabar_lca=0.0005*(1-gabapentin)
 		insert cat
 			gcatbar_cat=0.0005
 		insert gskch
@@ -145,9 +146,9 @@ proc gctemp() {
 			gkfbar_ichan2=0.001
 			gksbar_ichan2=0.008
 		insert nca  // HAV-N- Ca channel
-			gncabar_nca=0.001  // check to modify- original 0.004
+			gncabar_nca=0.001*(1-gabapentin)  // check to modify- original 0.004
 		insert lca 
-			glcabar_lca=0.0
+			glcabar_lca=0.0*(1-gabapentin)
 		insert cat
 			gcatbar_cat=0.001
 		insert gskch

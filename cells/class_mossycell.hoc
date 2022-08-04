@@ -3,7 +3,7 @@ ndend1=4
 ndend2=4
 ndend3=4
 ndend4=4
-
+gabapentin = 1
 public  pre_list, connect_pre, subsets, is_art, is_connected
 public soma, mcdend1, mcdend2, mcdend3, mcdend4
 external noise_random_stream_offset_
@@ -82,9 +82,9 @@ proc temp() {
 		insert borgka
 	gkabar_borgka=0.00001
 		insert nca  // HAV-N- Ca channel
-	gncabar_nca=0.00008  // check to modify- original 0.004
+	gncabar_nca=0.00008*(1-gabapentin)  // check to modify- original 0.004
 		insert lca 
-	glcabar_lca=0.0006
+	glcabar_lca=0.0006*(1-gabapentin)
 		insert gskch
 	gskbar_gskch=0.016
 		insert cagk
@@ -138,7 +138,7 @@ soma fl = new Gfluct2(0.5) 	// a noise source that emulates fluctuating synaptic
 							// the conductances are sampled from a Gaussian distribution
 							// where negative values were replaced with 0
 
-rs = new RandomStream($1*noise_random_stream_offset_+1)	// Generate a new random stream, setting
+rs = new RandomStream($1*noise_random_stream_offset_+10)	// Generate a new random stream, setting
 														//	aside 'noise_random_stream_offset_' random numbers
 														//	for this cell based on its gid
 rs.r.normal(0, 1)			// set the stream to generate a gaussian distribution with mean 0 and variance 1

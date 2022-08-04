@@ -13,8 +13,8 @@ h('PercentCellDeath = 0') # % of vulnerable interneurons to remove
 h('PercentAxonSprouting = 0') # % of extra connectivity allowed
 h('SimDuration = 100') # duration of simulation in milliseconds
 h('Scale = 1000') # How many real cells are represented by one
-                 # model cell (so larger numbers mean smaller models)
-                 # 20000 - good for making sure code can run, may take
+# model cell (so larger numbers mean smaller models)
+# 20000 - good for making sure code can run, may take
                  # 2 - 8 min
                  # 2000 or 1000 - better for more realistic results
                  # but may take a long time depending on your computer
@@ -23,6 +23,7 @@ h.RunName = "Test"
 h.PercentCellDeath = 10  # 50 % would be 50 
 h.PercentAxonSprouting = 50 # 50% would be 50
 h.SimDuration = 2000
+
 pc = h.ParallelContext()
 # check if dir exists
 # update RunName if necessary

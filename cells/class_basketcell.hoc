@@ -5,7 +5,7 @@ ndend1=4
 ndend2=4
 ndend3=4
 ndend4=4
-
+gabapentin = 1
 public  pre_list, connect_pre, subsets, is_art, is_connected
 public soma, bcdend1, bcdend2, bcdend3, bcdend4
 public all, adend, bdend, cdend, ddend
@@ -90,9 +90,9 @@ proc temp() {
 		insert borgka
 	gkabar_borgka=0.00015
 		insert nca  // HAV-N- Ca channel
-	gncabar_nca=0.0008   
+	gncabar_nca=0.0008*(1-gabapentin)   
 		insert lca 
-	glcabar_lca=0.005
+	glcabar_lca=0.005*(1-gabapentin)
 		insert gskch
 	gskbar_gskch=0.000002
 		insert cagk
