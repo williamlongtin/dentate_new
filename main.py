@@ -83,7 +83,7 @@ for key in cell_ranges:
     pt_c += 1
     
 
-plt.title("{} with Cell Death: {}%, Sprouting: {}%".format(ROI, PercentCellDeath,PercentAxonSprouting))
+plt.title("changing rando ca stuff bruv")
 plt.xlabel("Time (ms)")
 plt.ylabel("Cells (positioned)")
 plt.legend(loc="upper left",fontsize=8)

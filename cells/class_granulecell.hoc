@@ -4,7 +4,7 @@ begintemplate granulecell
 //ndendN where N = # of dendrites
 ndend1=4 //# segments for each dendrite
 ndend2=4
-gabapentin = 1
+gabapentin = 0.5
 //define variables
 public  pre_list, connect_pre, subsets, is_art, is_connected
 public soma, gcdend1, gcdend2
@@ -59,8 +59,8 @@ proc gctemp() {
     
 	forsec all {
 		insert ccanl
-	catau_ccanl = 10
-	caiinf_ccanl = 5.e-6
+	catau_ccanl = 10*(1-gabapentin)
+	caiinf_ccanl = 5.e-6*(1-gabapentin)
 	Ra=210
 	}
 
@@ -94,11 +94,11 @@ proc gctemp() {
 		insert lca 
 	glcabar_lca=0.0075*(1-gabapentin)
 		insert cat
-	gcatbar_cat=0.000075
+	gcatbar_cat=0.000075*(1-gabapentin)
 		insert gskch
 	gskbar_gskch=0.0004
 		insert cagk
-	gkbar_cagk=0.0006
+	gkbar_cagk=0.0006*(1-gabapentin)
 	gl_ichan2 = 0.00004
 	cm=1}
 		
@@ -111,7 +111,7 @@ proc gctemp() {
 		insert lca 
 	glcabar_lca=0.0075*(1-gabapentin)
 		insert cat
-	gcatbar_cat=0.00025
+	gcatbar_cat=0.00025*(1-gabapentin)
 		insert gskch
 	gskbar_gskch=0.0002
 		insert cagk
@@ -130,7 +130,7 @@ proc gctemp() {
 		insert lca 
 			glcabar_lca=0.0005*(1-gabapentin)
 		insert cat
-			gcatbar_cat=0.0005
+			gcatbar_cat=0.0005*(1-gabapentin)
 		insert gskch
 			gskbar_gskch=0.0
 		insert cagk
@@ -150,7 +150,7 @@ proc gctemp() {
 		insert lca 
 			glcabar_lca=0.0*(1-gabapentin)
 		insert cat
-			gcatbar_cat=0.001
+			gcatbar_cat=0.001*(1-gabapentin)
 		insert gskch
 			gskbar_gskch=0.0
 		insert cagk
@@ -175,12 +175,12 @@ proc gctemp() {
 		ekf = -90
 		eks = -90
 		ek=-90
-		elca=130
-		etca=130
+		elca=130*(1-gabapentin)
+		etca=130*(1-gabapentin)
 		esk=-90
 		el_ichan2 =-70
-		cao_ccanl=2
-	}  // make catau slower70e-3 	cao=2 cai=50.e-6 
+		cao_ccanl=2*(1-gabapentin)
+	}  // make catau slower70e-3 	cao=2*(1-gabapentin) cai=50.e-6*(1-gabapentin) 
 }
 
 proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
@@ -195,11 +195,11 @@ proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
 				templist = new List ()
 				
 				gcdend1[3] syn = new Exp2Sid(0.5) // PP syn based on Greg and Staley
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=0		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=0		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				gcdend2[3] syn = new Exp2Sid(0.5) // PPsyn based on Greg and Staley
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=1		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=1*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -210,11 +210,11 @@ proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
 				templist = new List ()
 						
 				gcdend1[1] syn = new Exp2Sid(0.5) // MC syn *** Estimated
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=2		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=2*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				gcdend2[1] syn = new Exp2Sid(0.5) // MC syn   *** Estimated
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=3		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=3*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -226,11 +226,11 @@ proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
 				templist = new List ()
 						
 				gcdend1[3] syn = new Exp2Sid(0.5) // HIPP  syn based on Harney and Jones corrected for temp
-				syn.tau1 = 0.5	syn.tau2 = 6	syn.e = -70	syn.sid=4		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.5*(1-gabapentin)	syn.tau2 = 6*(1-gabapentin)	syn.e = -70	syn.sid=4*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				gcdend2[3] syn = new Exp2Sid(0.5) // HIPP syn based on Harney and Jones corrected for temp
-				syn.tau1 = 0.5	syn.tau2 = 6	syn.e = -70	syn.sid=5		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.5*(1-gabapentin)	syn.tau2 = 6*(1-gabapentin)	syn.e = -70	syn.sid=5*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -241,7 +241,7 @@ proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
 				templist = new List ()
 						
 				soma syn = new Exp2Sid(0.5) // BC  syn syn based on Bartos
-				syn.tau1 = 0.26	syn.tau2 = 5.5	syn.e = -70	syn.sid=6		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.26*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = -70	syn.sid=6*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -252,11 +252,11 @@ proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
 				templist = new List ()
 						
 				gcdend1[1] syn = new Exp2Sid(0.5) // Sprouted Syn*************
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=7		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=7*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				gcdend2[1] syn = new Exp2Sid(0.5) // Sprouted Syn*********
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=8		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=8*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)

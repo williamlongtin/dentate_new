@@ -4,7 +4,7 @@ ndend1=3
 ndend2=3
 ndend3=3
 ndend4=3
-gabapentin = 1
+gabapentin = 0.5
 public  pre_list, connect_pre, subsets, is_art, is_connected
 public soma, hcdend1, hcdend2, hcdend3, hcdend4
 create soma, hcdend1[ndend1], hcdend2[ndend2], hcdend3[ndend3], hcdend4[ndend4]

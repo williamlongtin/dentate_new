@@ -3,7 +3,7 @@ ndend1=4
 ndend2=4
 ndend3=4
 ndend4=4
-gabapentin = 1
+gabapentin = 0.5
 public  pre_list, connect_pre, subsets, is_art, is_connected
 public soma, mcdend1, mcdend2, mcdend3, mcdend4
 external noise_random_stream_offset_
@@ -77,8 +77,8 @@ proc temp() {
     
 	forsec all {
 		insert ccanl
-	catau_ccanl = 10
-	caiinf_ccanl = 5.e-6
+	catau_ccanl = 10*(1-gabapentin)
+	caiinf_ccanl = 5.e-6*(1-gabapentin)
 		insert borgka
 	gkabar_borgka=0.00001
 		insert nca  // HAV-N- Ca channel
@@ -126,7 +126,7 @@ proc temp() {
 		ehyf=-40 ehys=-40
 		 el_ichan2 =-59
 
-		cao_ccanl=2 }  // make catau slower70e-3 	cao=2 cai=50.e-6 
+		cao_ccanl=2*(1-gabapentin) }  // make catau slower70e-3 	cao=2*(1-gabapentin) cai=50.e-6*(1-gabapentin) 
 
 soma stim = new IClamp(0.5)
 stim.del = 0.01
@@ -161,19 +161,19 @@ fl.noiseFromRandom(rs.r)	// use the random Gaussian distribution stream in the G
 				templist = new List ()
 				
 				mcdend1 [3] syn = new Exp2Sid(0.7)	//PP(AMPA) syn to dist dend similar to PP to GC
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=0		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=0		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend2 [3] syn = new Exp2Sid(0.7)	//PP(AMPA) syn to dist dend similar to PP to GC
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=1		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=1*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend3 [3] syn = new Exp2Sid(0.7)	//PP(AMPA) syn to dist dend similar to PP to GC
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=2		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=2*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend4 [3] syn = new Exp2Sid(0.7)	//PP(AMPA) syn to dist dend similar to PP to GC
-				syn.tau1 = 1.5	syn.tau2 = 5.5	syn.e = 0	syn.sid=3		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 1.5*(1-gabapentin)	syn.tau2 = 5.5*(1-gabapentin)	syn.e = 0	syn.sid=3*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 		
 				pre_list.append(templist)
@@ -184,19 +184,19 @@ fl.noiseFromRandom(rs.r)	// use the random Gaussian distribution stream in the G
 				templist = new List ()
 
 				mcdend1 [0] syn = new Exp2Sid(0.5)	//GC(AMPA) syn to prox dend similar to GC>CA3 Jonas '93
-				syn.tau1 = 0.5	syn.tau2 = 6.2	syn.e = 0	syn.sid=4		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.5*(1-gabapentin)	syn.tau2 = 6.2*(1-gabapentin)	syn.e = 0	syn.sid=4*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend2 [0] syn = new Exp2Sid(0.5)	//GC(AMPA) syn to prox dend similar to GC>CA3 Jonas '93
-				syn.tau1 = 0.5	syn.tau2 = 6.2	syn.e = 0	syn.sid=5		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.5*(1-gabapentin)	syn.tau2 = 6.2*(1-gabapentin)	syn.e = 0	syn.sid=5*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend3 [0] syn = new Exp2Sid(0.5)	//GC(AMPA) syn to prox dend similar to GC>CA3 Jonas '93
-				syn.tau1 = 0.5	syn.tau2 = 6.2	syn.e = 0	syn.sid=6		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.5*(1-gabapentin)	syn.tau2 = 6.2*(1-gabapentin)	syn.e = 0	syn.sid=6*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend4 [0] syn = new Exp2Sid(0.5)	//GC(AMPA) syn to prox dend similar to GC>CA3 Jonas '93
-				syn.tau1 = 0.5	syn.tau2 = 6.2	syn.e = 0	syn.sid=7		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.5*(1-gabapentin)	syn.tau2 = 6.2*(1-gabapentin)	syn.e = 0	syn.sid=7*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -207,19 +207,19 @@ fl.noiseFromRandom(rs.r)	// use the random Gaussian distribution stream in the G
 				templist = new List ()
 
 				mcdend1 [0] syn = new Exp2Sid(0.5)	//MC(AMPA) syn to prox dend similar to CA#>CA3 Aaron
-				syn.tau1 = 0.45 	syn.tau2 =2.2	syn.e = 0	syn.sid=8		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.45*(1-gabapentin) 	syn.tau2 =2.2*(1-gabapentin)	syn.e = 0	syn.sid=8*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend2 [0] syn = new Exp2Sid(0.5)	//MC(AMPA) syn to prox dend similar to CA#>CA3 Aaron
-				syn.tau1 = 0.45		syn.tau2 = 2.2	syn.e = 0	syn.sid=9		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.45*(1-gabapentin)	syn.tau2 = 2.2*(1-gabapentin)	syn.e = 0	syn.sid=9*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend3 [0] syn = new Exp2Sid(0.5)	//MC(AMPA) syn to prox dend similar to CA#>CA3 Aaron
-				syn.tau1 = 0.45		syn.tau2 = 2.2	syn.e = 0	syn.sid=10		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.45*(1-gabapentin)		syn.tau2 = 2.2*(1-gabapentin)	syn.e = 0	syn.sid=10*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend4 [0] syn = new Exp2Sid(0.5)	//MC(AMPA) syn to prox dend similar to CA#>CA3 Aaron
-				syn.tau1 = 0.45		syn.tau2 = 2.2	syn.e = 0	syn.sid=11		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.45*(1-gabapentin)		syn.tau2 = 2.2*(1-gabapentin)	syn.e = 0	syn.sid=11*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -230,7 +230,7 @@ fl.noiseFromRandom(rs.r)	// use the random Gaussian distribution stream in the G
 				templist = new List ()
 
 				soma syn = new Exp2Sid(0.5)	//BC(GABA) syn to prox dend based on BC>CA3 Bartos PNAS (mice)
-				syn.tau1 = 0.3	syn.tau2 = 3.3	syn.e = -70		syn.sid=12		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = 0.3*(1-gabapentin)	syn.tau2 = 3.3*(1-gabapentin)	syn.e = -70		syn.sid=12*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
@@ -241,19 +241,19 @@ fl.noiseFromRandom(rs.r)	// use the random Gaussian distribution stream in the G
 				templist = new List ()
 
 				mcdend1 [2] syn = new Exp2Sid(0.5)	//HIPP(GABA) syn to prox dend based on Hilar>GC Harney&Jones
-				syn.tau1 = .5	syn.tau2 = 6	syn.e = -70		syn.sid=13		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = .5*(1-gabapentin)	syn.tau2 = 6*(1-gabapentin)	syn.e = -70		syn.sid=13*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend2 [2] syn = new Exp2Sid(0.5)	//HIPP(GABA) syn to prox dend based on Hilar>GC Harney&Jones
-				syn.tau1 = .5	syn.tau2 = 6	syn.e = -70		syn.sid=14		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = .5*(1-gabapentin)	syn.tau2 = 6*(1-gabapentin)	syn.e = -70		syn.sid=14*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend3 [2] syn = new Exp2Sid(0.5)	//HIPP(GABA) syn to prox dend based on Hilar>GC Harney&Jones
-				syn.tau1 = .5	syn.tau2 = 6	syn.e = -70		syn.sid=15		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = .5*(1-gabapentin)	syn.tau2 = 6*(1-gabapentin)	syn.e = -70		syn.sid=15*(1-gabapentin)		// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				mcdend4 [2] syn = new Exp2Sid(0.5)	//HIPP(GABA) syn to prox dend based on Hilar>GC Harney&Jones
-				syn.tau1 = .5	syn.tau2 = 6	syn.e =-70		syn.sid=16		// sid: Set the synapse id for each synapse defined for cell
+				syn.tau1 = .5*(1-gabapentin)	syn.tau2 = 6*(1-gabapentin)	syn.e =-70		syn.sid=16	*(1-gabapentin)	// sid: Set the synapse id for each synapse defined for cell
 				templist.append(syn)
 
 				pre_list.append(templist)
